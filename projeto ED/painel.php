@@ -55,27 +55,70 @@ require_once("includes/conectarBD.php");
                     </form>
                 </div>
             </div>
-              
         </div>
     </nav>
 
-    <?php
-        while ($arrayFilme = mysqli_fetch_array($sqlFilme)) {
+<?php
+// teste pra ver se o banco de dados ta dando certo
+
+/*
+$nome = "pizza doida";
+$desc = "roblox mineiro";
+$preco = "2.32";
+
+    $sql = mysqli_query($conexao, "INSERT INTO saborpizpainel (nomeSabor, descSabor, precoSabor) VALUES ('$nome', '$desc', '$preco')") or die("Erro no 
+comando SQL!!!" . mysqli_error($conexao));
+
+*/
     ?>
-            <tr>
-                <td width="10%" height="25"><b>
-                        <font face="Arial" size="2"><?php echo $arrayFilme['idFil']; ?></font>
-                </td>
-                <td width="20%" height="25"><b>
-                        <font face="Arial" size="2"><?php echo $arrayFilme['nomeFil']; ?></font>
-                </td>
-                <td width="10%" height="25"><b>
-                        <font face="Arial" size="2"><?php echo $arrayFilme['sinopseFil']; ?></font>
-                </td>
-            </tr>
 
     <?php
-        }
+
+    $sqlSabores = mysqli_query($conexao, "SELECT idSabor, nomeSabor, descSabor, precoSabor FROM saborpizpainel ORDER BY idSabor") or die("Não foi possível realizar a consulta.");
+
+    ?>
+
+    <?php
+    while ($arraySabores = mysqli_fetch_array($sqlSabores)) {
+    ?>
+
+    <div class="container text-center">
+            <div class="row align-items-start">
+                <div class="col">
+                    <?php echo $arraySabores['idSabor']; ?>
+                </div>
+                <div class="col">
+                    <?php echo $arraySabores['nomeSabor']; ?>
+                </div>
+                <div class="col">
+                    <?php echo $arraySabores['descSabor']; ?>
+                </div>
+                <div class="col">
+                    <?php echo $arraySabores['precoSabor']; ?>
+                </div>
+            </div>
+        </div>
+<?php
+/*
+        <tr>
+            <td width="10%" height="25"><b>
+                    <font face="Arial" size="2"><?php echo $arraySabores['idSabor']; ?></font>
+            </td>
+            <td width="20%" height="25"><b>
+                    <font face="Arial" size="2"><?php echo $arraySabores['nomeSabor']; ?></font>
+            </td>
+            <td width="10%" height="25"><b>
+                    <font face="Arial" size="2"><?php echo $arraySabores['descSabor']; ?></font>
+            </td>
+            <td width="10%" height="25"><b>
+                    <font face="Arial" size="2"><?php echo $arraySabores['precoSabor']; ?></font>
+            </td>
+        </tr>
+*/
+?>
+
+    <?php
+    }
     ?>
 
 </body>
