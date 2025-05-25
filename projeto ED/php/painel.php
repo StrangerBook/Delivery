@@ -1,6 +1,6 @@
 <?php
 
-require_once("includes/conectarBD.php");
+require_once("../includes/conectarBD.php");
 
 ?>
 
@@ -10,7 +10,7 @@ require_once("includes/conectarBD.php");
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="style/estilo.css">
+    <link rel="stylesheet" type="text/css" href="../style/estilo.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
     <title>Painel de Pizza</title>
 </head>
@@ -37,41 +37,13 @@ require_once("includes/conectarBD.php");
                             <a class="nav-link active" aria-current="page" href="#">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Link</a>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Dropdown
-                            </a>
-                            <!--Colocar pagina de add pizza -->
-                            <ul class="dropdown-menu dropdown-menu-dark">
-                                <li><a class="dropdown-item" href="#">Action</a></li>
-                                <li><a class="dropdown-item" href="#">Another action</a></li>
-                                <li>
-                                    <hr class="dropdown-divider">
-                                </li>
-                                <li><a class="dropdown-item" href="#">Something else here</a></li>
-                            </ul>
+                            <a class="nav-link" href="add_pizza.php">Adicionar Pizza</a>
                         </li>
                     </ul>
                 </div>
             </div>
         </div>
     </nav>
-
-<?php
-// teste pra ver se o banco de dados ta dando certo
-
-/*
-$nome = "pizza doida";
-$desc = "roblox mineiro";
-$preco = "2.32";
-
-    $sql = mysqli_query($conexao, "INSERT INTO saborpizpainel (nomeSabor, descSabor, precoSabor) VALUES ('$nome', '$desc', '$preco')") or die("Erro no 
-comando SQL!!!" . mysqli_error($conexao));
-*/
-
-    ?>
 
 <!--coloca todas as informações da tabela do banco de dados dentro de uma variavel do php -->
 
@@ -121,8 +93,15 @@ $idSabor = $arraySabores['idSabor'];
         }
     }
 
+//também confere se foi requistado alguma exclusão,
+    if(isset($_POST['idSaborExc'])){  // se sim, a variavel $idSaborExc recebe o valor do item que n pode ser escrito,
+        $idSaborExc = $_POST['idSaborExc'];
+    } else{ //se nao, recebe 0 para mostrar todos os itens
+        $idSaborExc = 0;
+    }
+
 //confere se a pizza não foi selecionada para exclusão(sem isso a pizza é escrita do mesmo jeito, só sumindo se a gente recarregar a pagina [não sei ainda exatamente pq contece KKKKKKKKKK])
-    if($idSabor != $_POST['idSaborExc']){
+    if($idSabor != $idSaborExc){
     ?>
 
     <!--Mostra a tabela em si, com os dados de cada loop do "while" -->
@@ -138,12 +117,12 @@ $idSabor = $arraySabores['idSabor'];
                     <?php echo $arraySabores['descSabor']; ?>
                 </div>
                 <div class="col border border-warning" style="margin-top: 10px">
-                    <?php echo $arraySabores['precoSabor']; ?>
+                    <?php echo "R$". $arraySabores['precoSabor']; ?>
                 </div>
             </div>
     
             <div class="row align-items-start">
-                <div class="col border border-warning" style="margin-bottom: 10px">
+                <div class="col" style="margin-bottom: 10px">
                     
                 <!--BOTÃO IMPORTANTE é usado pra excluir o item e redirecioina o usuario de volta para a propria pagina -->
                     <form method="POST" action="<?php echo $_SERVER["PHP_SELF"]; ?>">
@@ -153,10 +132,12 @@ $idSabor = $arraySabores['idSabor'];
                     </form>
                 </div>
 
-                <!--WIP -->
-                <div class="col border border-warning" style="margin-bottom: 10px">
-                    <input type="hidden" name="enviar" value="<?php echo $idSabor; ?>">
-                    <button type="submit" class="btn btn-warning" for="">Alterar Item</button>
+                <!--leva para a pagina alterar -->
+                <div class="col" style="margin-bottom: 10px">
+                    <form method="POST" action="alterar_pizza.php">
+                        <input type="hidden" name="idSabor" value="<?php echo $idSabor; ?>">
+                        <button type="submit" class="btn btn-warning" for="">Alterar Item</button>
+                    </form>
                 </div>
             </div>
         </div>
