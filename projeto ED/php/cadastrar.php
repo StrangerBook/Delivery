@@ -1,7 +1,7 @@
 <?php
-include_once 'includes/conexao.php';
-include_once 'includes/registro.php';
-include_once 'includes/login.php';
+include_once ("../includes/conectarBD.php");
+include_once '../includes/registro.php';
+include_once '../includes/login.php';
 ?>
 
 <!DOCTYPE html>
@@ -10,7 +10,7 @@ include_once 'includes/login.php';
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" href="style/cadastro.css" />
+    <link rel="stylesheet" href="../style/cadastro.css" />
     <title>login</title>
 </head>
 

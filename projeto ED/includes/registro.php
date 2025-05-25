@@ -1,5 +1,6 @@
 <?php
-include_once 'conexao.php';
+include_once ("../includes/conectarBD.php");
+include_once ("../includes/conectarBDMysqli.php");
 
 $mensagem = '';
 
