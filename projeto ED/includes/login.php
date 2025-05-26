@@ -22,7 +22,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['email'], $_POST['pass
             // Login bem-sucedido
             $_SESSION['usuario_id'] = $id;
             $_SESSION['usuario_nome'] = $nome;
-            header("Location: painel.php");
+            header("Location: index.php");
             exit();
         } else {
             $mensagem_login = "Senha incorreta!";

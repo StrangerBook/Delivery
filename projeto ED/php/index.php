@@ -1,10 +1,17 @@
+<?php
+include_once("../includes/conectarBD.php");
+include_once("../includes/conectarBDMysqli.php");
+session_start();
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style/estilo.css">
+    <link rel="stylesheet" href="../style/estilo.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
     <title>Forno da Pizza</title>
@@ -16,17 +23,26 @@
             <h1>Forno de Pizza</h1>
         </div>
         <nav>
-            <ul class="menu-cadastro">
-                <li><a href="#cadastro">Cadastro</a></li>
+            <ul class="menu-cadastro" style="display: flex; gap: 10px; align-items: center;">
+                <?php if (isset($_SESSION['usuario_nome'])): ?>
+                    <li style="list-style: none; color: white;">
+                        <?php echo htmlspecialchars($_SESSION['usuario_nome']); ?>
+                    </li>
+                    <li style="list-style: none;">
+                        <a href="logout.php" style="color: white; text-decoration: none; background-color: #a00; padding: 5px 10px; border-radius: 5px;">Sair</a>
+                    </li>
+                <?php else: ?>
+                    <li><a href="../php/cadastrar.php">Cadastro</a></li>
+                <?php endif; ?>
             </ul>
             <ul class="menu-centro">
                 <li><a href="#home">Home</a></li>
-                <li><a href="#menu">Menu</a></li>
+                <li><a href="../php/pedido.php">Menu</a></li>
                 <li><a href="#sobre">Sobre</a></li>
                 <li><a href="#contato">Contato</a></li>
             </ul>
         </nav>
-    </header <!-- Banner Principal -->
+    </header>
     <section id="home" class="banner">
         <div class="banner-text">
             <h2>Bem-vindo ao Forno de Pizza</h2>
@@ -35,39 +51,39 @@
         </div>
     </section>
 
-   
+
     <section id="menu" class="menu">
         <h2>Especialidades da Casa</h2>
         <div class="menu-grid">
-          
+
             <div class="menu-item">
-                <img src="imagens/pizza1.jpeg" alt="Mariô da Casa">
+                <img src="../imagens/pizza1.jpeg" alt="Mariô da Casa">
                 <h3>Mariô da Casa</h3>
                 <p>R$ 59,90</p>
             </div>
-            
+
             <div class="menu-item">
-                <img src="imagens/pizza2.jpg" alt="Churrascão do Zé">
+                <img src="../imagens/pizza2.jpg" alt="Churrascão do Zé">
                 <h3>Churrascão do Zé</h3>
                 <p>R$ 54,90</p>
             </div>
-           
+
             <div class="menu-item">
-                <img src="imagens/pizza3.jpg" alt="Goiabêxa">
+                <img src="../imagens/pizza3.jpg" alt="Goiabêxa">
                 <h3>Goiabêxa</h3>
                 <p>R$ 48,90</p>
             </div>
         </div>
     </section>
 
-    
+
     <section id="sobre" class="sobre">
         <h2>Sobre Nós</h2>
         <p>O Forno da Pizza nasceu da paixão por pizzas especiais e momentos memoráveis. Desde 2010, servimos qualidade
             e sabor único.</p>
     </section>
 
-   
+
     <section id="contato" class="contato">
         <h2>Comentarios</h2>
         <form>
@@ -76,7 +92,7 @@
         </form>
     </section>
 
-    
+
     <footer>
         <div class="redes-sociais">
             <a href="#"><i class="fab fa-instagram"></i></a>

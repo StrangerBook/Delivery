@@ -12,7 +12,7 @@ require_once("../includes/conectarBD.php");
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
     <link rel="stylesheet" href="../style/estilo.css">
-    <title>Pedido</title>
+    <title>Document</title>
 </head>
 
 <body>
@@ -51,16 +51,6 @@ require_once("../includes/conectarBD.php");
 
     <?php
 
-
-    if(isset($_POST['addPedido'])){
-        $idSaborAdd = $_POST['idSaborAdd'];
-
-    }
-
-
-
-
-
     $contador = 4;
     $vezes = 0;
 
@@ -81,8 +71,7 @@ require_once("../includes/conectarBD.php");
                         <h5 class="card-title"><?php echo $arraySabores['nomeSabor'] ?></h5>
                         <p class="card-text"><?php echo $arraySabores['descSabor'] ?></p>
                         <form method="POST" action="pedido.php">
-                            <input type="hidden" name="idSaborAdd" value="<?php echo $idSabor ?>">
-                            <input type="hidden" name="addPedido" value="S">
+                            <input type="hidden" name="idSabor" value="<?php echo $idSabor ?>">
                             <button type="subimit" class="btn btn-warning"><?php echo "R$" . $arraySabores['precoSabor'] ?></button>
                         </form>
                     </div>
@@ -108,8 +97,7 @@ require_once("../includes/conectarBD.php");
                         <h5 class="card-title"><?php echo $arraySabores['nomeSabor'] ?></h5>
                         <p class="card-text"><?php echo $arraySabores['descSabor'] ?></p>
                         <form method="POST" action="pedido.php">
-                            <input type="hidden" name="idSaborAdd" value="<?php echo $idSabor ?>">
-                            <input type="hidden" name="addPedido" value="S">
+                            <input type="hidden" name="idSabor" value="<?php echo $idSabor ?>">
                             <button type="subimit" class="btn btn-warning"><?php echo "R$" . $arraySabores['precoSabor'] ?></button>
                         </form>
                     </div>
@@ -130,8 +118,7 @@ require_once("../includes/conectarBD.php");
                     <h5 class="card-title"><?php echo $arraySabores['nomeSabor'] ?></h5>
                     <p class="card-text"><?php echo $arraySabores['descSabor'] ?></p>
                     <form method="POST" action="pedido.php">
-                        <input type="hidden" name="idSaborAdd" value="<?php echo $idSabor ?>">
-                        <input type="hidden" name="addPedido" value="S">
+                        <input type="hidden" name="idSabor" value="<?php echo $idSabor ?>">
                         <button type="subimit" class="btn btn-warning"><?php echo "R$" . $arraySabores['precoSabor'] ?></button>
                     </form>
                 </div>
@@ -147,7 +134,6 @@ require_once("../includes/conectarBD.php");
 ?>
     </div>
 </div>
-
 <div style="margin-top: 50px"></div>
 </body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js" integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO" crossorigin="anonymous"></script>

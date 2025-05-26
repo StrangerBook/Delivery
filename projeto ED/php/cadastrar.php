@@ -1,5 +1,5 @@
 <?php
-include_once ("../includes/conectarBD.php");
+include_once "../includes/conectarBD.php";
 include_once '../includes/registro.php';
 include_once '../includes/login.php';
 ?>
@@ -80,7 +80,7 @@ include_once '../includes/login.php';
         </div>
     </div>
 </body>
-<script src="JavaScript/script.js"></script>
+<script src="../JavaScript/script.js"></script>
 <script src="https://kit.fontawesome.com/23223f73dd.js" crossorigin="anonymous"></script>
 
 </html>
