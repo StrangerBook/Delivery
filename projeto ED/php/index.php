@@ -2,6 +2,19 @@
 include_once("../includes/conectarBD.php");
 include_once("../includes/conectarBDMysqli.php");
 session_start();
+
+if (isset($_POST['enviar_comentario']) && isset($_SESSION['usuario_id'])) {
+    $mensagem = trim($_POST['mensagem']);
+    $usuario_id = $_SESSION['usuario_id'];
+    $nome = $_SESSION['usuario_nome'];
+
+    if (!empty($mensagem)) {
+        $stmt = $mysqli->prepare("INSERT INTO comentarios (usuario_id, nome, mensagem) VALUES (?, ?, ?)");
+        $stmt->bind_param("iss", $usuario_id, $nome, $mensagem);
+        $stmt->execute();
+        $stmt->close();
+    }
+}
 ?>
 
 
@@ -82,16 +95,35 @@ session_start();
         <p>O Forno da Pizza nasceu da paixão por pizzas especiais e momentos memoráveis. Desde 2010, servimos qualidade
             e sabor único.</p>
     </section>
-
-
     <section id="contato" class="contato">
         <h2>Comentarios</h2>
-        <form>
-            <input type="text" placeholder="Digite seu Comentario" required>
-            <button type="submit">Enviar</button>
+        <form method="POST" action="">
+            <input type="text" name="mensagem" placeholder="Digite seu Comentario" required>
+
+            <?php if (!isset($_SESSION['usuario_id'])): ?>
+                <p style="color: red; margin: 10px 0;">⚠️ É obrigatório estar logado para comentar.</p>
+            <?php endif; ?>
+
+            <button type="submit" name="enviar_comentario"
+                <?php echo !isset($_SESSION['usuario_id']) ? 'disabled' : ''; ?>>
+                Enviar
+            </button>
         </form>
     </section>
+    <div class="comentarios-lista">
+        <?php
+        $resultado = $mysqli->query("SELECT nome, mensagem, data_comentario FROM comentarios ORDER BY data_comentario DESC");
 
+        while ($comentario = $resultado->fetch_assoc()) {
+            echo "<div class='comentario'>";
+            echo "<strong>" . htmlspecialchars($comentario['nome']) . "</strong><br>";
+            echo "<p>" . nl2br(htmlspecialchars($comentario['mensagem'])) . "</p>";
+            echo "<small>" . date("d/m/Y H:i", strtotime($comentario['data_comentario'])) . "</small>";
+            echo "<hr>";
+            echo "</div>";
+        }
+        ?>
+    </div>
 
     <footer>
         <div class="redes-sociais">
