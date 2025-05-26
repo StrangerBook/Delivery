@@ -10,6 +10,7 @@ require_once("../includes/conectarBD.php");
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="../style/estilo.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
     <title>Painel de Pizza</title>
 </head>
@@ -26,7 +27,7 @@ require_once("../includes/conectarBD.php");
             </button>
             <div class="offcanvas offcanvas-end text-bg-warning" tabindex="-1" id="offcanvasDarkNavbar" aria-labelledby="offcanvasDarkNavbarLabel">
                 <div class="offcanvas-header">
-                    <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel">Forno de Pizza</h5>
+                    <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel">Dark offcanvas</h5>
                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                 </div>
                 
@@ -64,17 +65,22 @@ require_once("../includes/conectarBD.php");
     <div class="container text-center">
             <div class="row align-items-start">
                 <div class="col">
-                    <p style="font-size: 20px"><b>Pizzas</b></p>
+                    <p style="font-size: 20px"><b>ID</b></p>
+                </div>
+                <div class="col">
+                    <p style="font-size: 20px"><b>Nome</b></p>
+                </div>
+                <div class="col">
+                    <p style="font-size: 20px"><b>Ingrediente</b></p>
+                </div>
+                <div class="col">
+                    <p style="font-size: 20px"><b>Preço</b></p>
                 </div>
             </div>
         </div>
 
 <!--pega um valor da variavel "$sqlSabores" por repetição do laço e coloca no $arraySabores -->
 <?php
-
-$contador = 4;
-$vezes = 0;
-
 while ($arraySabores = mysqli_fetch_array($sqlSabores)) {
 
 //transfere o valor do id da array pra uma variavel separada
@@ -96,128 +102,50 @@ $idSabor = $arraySabores['idSabor'];
 
 //confere se a pizza não foi selecionada para exclusão(sem isso a pizza é escrita do mesmo jeito, só sumindo se a gente recarregar a pagina [não sei ainda exatamente pq contece KKKKKKKKKK])
     if($idSabor != $idSaborExc){
-
-// confere em que posição das fileiras o sabor tá e quantas vezes foi passado o while (só roda se for a primeira repetição)
-    if($contador == 4 && $vezes == 0){
-
     ?>
 
-    <!--Mostra o primeiro card de todos, com os dados de cada loop do "while" -->
-    <div style="margin-top: 50px"></div>
-    <div class="container text-center d-flex justify-content-center">
-        <div class="row align-items-start">
-            <div class="col" style="margin-top: 10px">
-                    <div class="card" style="width: 18rem;">
-                    <img src="..." class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title"><?php echo $arraySabores['nomeSabor'] ?></h5>
-                        <p class="card-text"><?php echo $arraySabores['idSabor'] ?></p>
-                        <p class="card-text"><?php echo $arraySabores['descSabor'] ?></p>
-                        <p class="card-text"><?php echo "R$" . $arraySabores['precoSabor'] ?></p>
-
-                        <!--BOTÃO IMPORTANTE é usado pra excluir o item e redirecioina o usuario de volta para a propria pagina -->
-                        <form method="POST" action="<?php echo $_SERVER["PHP_SELF"]; ?>">
-                            <input type="hidden" name="idSaborExc" value="<?php echo $idSabor; ?>">
-                            <input type="hidden" name="deletar" value="S">
-                        <button type="submit" class="btn btn-danger" for="">Excluir Item</button>
-                        </form>
-                        
-                        <!--leva para a pagina alterar -->
-                        <form method="POST" action="alterar_pizza.php">
-                            <input type="hidden" name="idSabor" value="<?php echo $idSabor; ?>">
-                            <button type="submit" class="btn btn-warning" for="">Alterar Item</button>
-                        </form>
-
-                    </div>
-                    </div>
+    <!--Mostra a tabela em si, com os dados de cada loop do "while" -->
+    <div class="container text-center">
+            <div class="row align-items-start">
+                <div class="col border border-warning" style="margin-top: 10px">
+                    <?php echo $arraySabores['idSabor']; ?>
                 </div>
-            
-<?php
+                <div class="col border border-warning" style="margin-top: 10px">
+                    <?php echo $arraySabores['nomeSabor']; ?>
+                </div>
+                <div class="col border border-warning" style="margin-top: 10px">
+                    <?php echo $arraySabores['descSabor']; ?>
+                </div>
+                <div class="col border border-warning" style="margin-top: 10px">
+                    <?php echo "R$". $arraySabores['precoSabor']; ?>
+                </div>
+            </div>
+    
+            <div class="row align-items-start">
+                <div class="col" style="margin-bottom: 10px">
+                    
+                <!--BOTÃO IMPORTANTE é usado pra excluir o item e redirecioina o usuario de volta para a propria pagina -->
+                    <form method="POST" action="<?php echo $_SERVER["PHP_SELF"]; ?>">
+                        <input type="hidden" name="idSaborExc" value="<?php echo $idSabor; ?>">
+                        <input type="hidden" name="deletar" value="S">
+                        <button type="submit" class="btn btn-danger" for="">Excluir Item</button>
+                    </form>
+                </div>
 
-//volta o contador pro inicio da fila
-$contador = 1;
-$vezes++;
-
-// confere em que posição das fileiras o sabor tá e quantas vezes foi passado o while (roda toda vez que não for a primeira repetição)
-} elseif ($contador == 4 && $vezes > 0){
-?>
+                <!--leva para a pagina alterar -->
+                <div class="col" style="margin-bottom: 10px">
+                    <form method="POST" action="alterar_pizza.php">
+                        <input type="hidden" name="idSabor" value="<?php echo $idSabor; ?>">
+                        <button type="submit" class="btn btn-warning" for="">Alterar Item</button>
+                    </form>
+                </div>
+            </div>
         </div>
-    </div>
-    <!--Mostra o primeiro card de cada fileira, com os dados de cada loop do "while" -->
-    <div style="margin-top: 50px"></div>
-    <div class="container text-center d-flex justify-content-center">
-        <div class="row align-items-start">
-            <div class="col" style="margin-top: 10px">
-                    <div class="card" style="width: 18rem;">
-                    <img src="..." class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title"><?php echo $arraySabores['nomeSabor'] ?></h5>
-                        <p class="card-text"><?php echo $arraySabores['idSabor'] ?></p>
-                        <p class="card-text"><?php echo $arraySabores['descSabor'] ?></p>
-                        <p class="card-text"><?php echo "R$" .  $arraySabores['precoSabor'] ?></p>
 
-                        <!--BOTÃO IMPORTANTE é usado pra excluir o item e redirecioina o usuario de volta para a propria pagina -->
-                        <form method="POST" action="<?php echo $_SERVER["PHP_SELF"]; ?>">
-                            <input type="hidden" name="idSaborExc" value="<?php echo $idSabor; ?>">
-                            <input type="hidden" name="deletar" value="S">
-                        <button type="submit" class="btn btn-danger" for="">Excluir Item</button>
-                        </form>
-                        
-                        <!--leva para a pagina alterar -->
-                        <form method="POST" action="alterar_pizza.php">
-                            <input type="hidden" name="idSabor" value="<?php echo $idSabor; ?>">
-                            <button type="submit" class="btn btn-warning" for="">Alterar Item</button>
-                        </form>
-
-                    </div>
-                    </div>
-                </div>
 <?php
-
-//volta o contador pro inicio da fila
-$contador = 1;
-$vezes++;
-
-} else {
-?>
-
-<!--Mostra um card de cada item, com os dados de cada loop do "while" -->
-            <div class="col" style="margin-top: 10px">
-                    <div class="card" style="width: 18rem;">
-                    <img src="..." class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title"><?php echo $arraySabores['nomeSabor'] ?></h5>
-                        <p class="card-text"><?php echo $arraySabores['idSabor'] ?></p>
-                        <p class="card-text"><?php echo $arraySabores['descSabor'] ?></p>
-                        <p class="card-text"><?php echo "R$" .  $arraySabores['precoSabor'] ?></p>
-
-                        <!--BOTÃO IMPORTANTE é usado pra excluir o item e redirecioina o usuario de volta para a propria pagina -->
-                        <form method="POST" action="<?php echo $_SERVER["PHP_SELF"]; ?>">
-                            <input type="hidden" name="idSaborExc" value="<?php echo $idSabor; ?>">
-                            <input type="hidden" name="deletar" value="S">
-                        <button type="submit" class="btn btn-danger" for="">Excluir Item</button>
-                        </form>
-                        
-                        <!--leva para a pagina alterar -->
-                        <form method="POST" action="alterar_pizza.php">
-                            <input type="hidden" name="idSabor" value="<?php echo $idSabor; ?>">
-                            <button type="submit" class="btn btn-warning" for="">Alterar Item</button>
-                        </form>
-
-                    </div>
-                    </div>
-                </div>
-<?php
-//vai passando coluna por coluna
-        $contador++;
-        $vezes++;
-
-        }
     }
 }
 ?>
-    </div>
-</div>
 
 </body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js" integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO" crossorigin="anonymous"></script>

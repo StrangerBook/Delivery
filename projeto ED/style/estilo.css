@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,700&display=swap');
 :root {
     --vermelho-pizza: #E63946;
     --amarelo-queijo: #F1C40F;
@@ -13,7 +14,7 @@ body {
     margin: 0;
     padding: 0;
     color: var(--preto);
-    background-color: black !important;
+    background-color: black;
     line-height: 1.6;
 }
 
@@ -100,6 +101,9 @@ nav ul li a:hover {
     background-color: rgba(255, 255, 255, 0.1);
 }
 
+.navbar-nav{
+    color: white;
+}
 
 .banner {
     background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
@@ -157,8 +161,7 @@ nav ul li a:hover {
 
 .menu {
     padding: 5rem 2rem;
-    background-color: black;
-   
+    background-color: rgb(27, 26, 26);
 }
 
 .menu h2 {
@@ -243,8 +246,7 @@ nav ul li a:hover {
 
 .contato {
     padding: 5rem 2rem;
-    background-color: black
-   
+    background-color: rgb(27, 26, 26);
 }
 
 .contato h2 {
@@ -357,21 +359,43 @@ footer p {
 }
 
 .banner .btn {
-    background-color: #F1C40F;
+    background-color:#F1C40F;
 }
 
-.comentarios-lista {
-    padding: 2rem 2rem;
-    max-width: 600px;
-    margin: 0 auto 2rem auto;
-    box-sizing: border-box;
-    width: 100%;
+.barra-lateral {
+    position: fixed;
+    top: 140px; /* Mais para baixo */
+    right: 100px; /* Mais para a esquerda */
+    width: 400px;
+    background: #f8f9fa;
+    box-shadow: -2px 0 8px rgba(0,0,0,0.1);
+    padding: 20px 15px;
+    z-index: 1000;
+    overflow-y: auto;
+    border-radius: 10px 10px 10px 10px;
+    align-content: center;
+}
+@media (max-width: 768px) {
+    .barra-lateral {
+        width: 100vw;
+        left: 0;
+        right: 0;
+        top: unset;
+        bottom: 0;
+        height: 200px;
+        box-shadow: 0 -2px 8px rgba(0,0,0,0.1);
+        border-radius: 10px 10px 0 0;
+    }
 }
 
-.comentario {
-    background: #fff;
-    border-radius: 8px;
-    padding: 1rem 1.5rem;
-    margin-bottom: 1.5rem;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+#item-carrinho {
+    border-radius: 10px 10px 0 0;
+    border: #2D3436;
+    font-size: 15px;
+    z-index: 1050;
+}
+
+.img-thumbnail {
+    width: 200px;
+    height: auto;
 }

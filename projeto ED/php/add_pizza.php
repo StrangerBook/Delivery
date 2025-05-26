@@ -46,7 +46,10 @@
             </div>
         </div>
 
-        <form class="form-floating" method="POST" action="conclusão_add_pizza.php">
+        <form class="form-floating" method="POST" action="conclusão_add_pizza.php" enctype="multipart/form-data">
+            <div class="input-group mb-3">
+                <input type="file" name="imagemSabor" class="form-control" id="inputGroupFile01">
+            </div>
             <div class="form-floating mb-3">
                 <input type="text" class="form-control" id="floatingInput" placeholder="Pizza" name="nomeSabor">
                 <label for="floatingInput">Nome do Sabor</label>

@@ -41,6 +41,8 @@ require_once("../includes/conectarBD.php");
     <div style="margin-top: 100px"></div>
 
 <?php
+
+    
     $nomeSabor = $_POST["nomeSabor"];
     $descSabor = $_POST["descSabor"];
     $precoSabor = $_POST["precoSabor"];
