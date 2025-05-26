@@ -51,6 +51,16 @@ require_once("../includes/conectarBD.php");
 
     <?php
 
+
+    if(isset($_POST['addPedido'])){
+        $idSaborAdd = $_POST['idSaborAdd'];
+
+    }
+
+
+
+
+
     $contador = 4;
     $vezes = 0;
 
@@ -71,7 +81,8 @@ require_once("../includes/conectarBD.php");
                         <h5 class="card-title"><?php echo $arraySabores['nomeSabor'] ?></h5>
                         <p class="card-text"><?php echo $arraySabores['descSabor'] ?></p>
                         <form method="POST" action="pedido.php">
-                            <input type="hidden" name="idSabor" value="<?php echo $idSabor ?>">
+                            <input type="hidden" name="idSaborAdd" value="<?php echo $idSabor ?>">
+                            <input type="hidden" name="addPedido" value="S">
                             <button type="subimit" class="btn btn-warning"><?php echo "R$" . $arraySabores['precoSabor'] ?></button>
                         </form>
                     </div>
@@ -97,7 +108,8 @@ require_once("../includes/conectarBD.php");
                         <h5 class="card-title"><?php echo $arraySabores['nomeSabor'] ?></h5>
                         <p class="card-text"><?php echo $arraySabores['descSabor'] ?></p>
                         <form method="POST" action="pedido.php">
-                            <input type="hidden" name="idSabor" value="<?php echo $idSabor ?>">
+                            <input type="hidden" name="idSaborAdd" value="<?php echo $idSabor ?>">
+                            <input type="hidden" name="addPedido" value="S">
                             <button type="subimit" class="btn btn-warning"><?php echo "R$" . $arraySabores['precoSabor'] ?></button>
                         </form>
                     </div>
@@ -118,7 +130,8 @@ require_once("../includes/conectarBD.php");
                     <h5 class="card-title"><?php echo $arraySabores['nomeSabor'] ?></h5>
                     <p class="card-text"><?php echo $arraySabores['descSabor'] ?></p>
                     <form method="POST" action="pedido.php">
-                        <input type="hidden" name="idSabor" value="<?php echo $idSabor ?>">
+                        <input type="hidden" name="idSaborAdd" value="<?php echo $idSabor ?>">
+                        <input type="hidden" name="addPedido" value="S">
                         <button type="subimit" class="btn btn-warning"><?php echo "R$" . $arraySabores['precoSabor'] ?></button>
                     </form>
                 </div>
