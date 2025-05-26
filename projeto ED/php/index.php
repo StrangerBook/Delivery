@@ -24,9 +24,9 @@ if (isset($_POST['enviar_comentario']) && isset($_SESSION['usuario_id'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../style/estilo.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
+      integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
+    <link rel="stylesheet" href="../style/estilo.css">
     <title>Forno da Pizza</title>
 </head>
 
@@ -35,6 +35,51 @@ if (isset($_POST['enviar_comentario']) && isset($_SESSION['usuario_id'])) {
         <div class="logo">
             <h1>Forno de Pizza</h1>
         </div>
+        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Navbar</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="#">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Link</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Dropdown
+          </a>
+          <ul class="dropdown-menu">
+            <?php if (isset($_SESSION['usuario_nome'])): ?>
+                    <li style="list-style: none; color: white;">
+                        <?php echo htmlspecialchars($_SESSION['usuario_nome']); ?>
+                    </li>
+                    <li style="list-style: none;">
+                        <a href="logout.php" style="color: white; text-decoration: none; background-color: #a00; padding: 5px 10px; border-radius: 5px;">Sair</a>
+                    </li>
+                <?php else: ?>
+                    <li><a href="../php/cadastrar.php">Cadastro</a></li>
+                <?php endif; ?>
+            <li><a class="dropdown-item" href="#">Another action</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="#">Something else here</a></li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link disabled" aria-disabled="true">Disabled</a>
+        </li>
+      </ul>
+      <form class="d-flex" role="search">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
+        <button class="btn btn-outline-success" type="submit">Search</button>
+      </form>
+    </div>
+  </div>
+</nav>
         <nav>
             <ul class="menu-cadastro" style="display: flex; gap: 10px; align-items: center;">
                 <?php if (isset($_SESSION['usuario_nome'])): ?>
@@ -96,24 +141,20 @@ if (isset($_POST['enviar_comentario']) && isset($_SESSION['usuario_id'])) {
             e sabor único.</p>
     </section>
     <section id="contato" class="contato">
-        <h2>Comentarios</h2>
-        <form method="POST" action="">
-            <input type="text" name="mensagem" placeholder="Digite seu Comentario" required>
-
-            <?php if (!isset($_SESSION['usuario_id'])): ?>
-                <p style="color: red; margin: 10px 0;">⚠️ É obrigatório estar logado para comentar.</p>
-            <?php endif; ?>
-
-            <button type="submit" name="enviar_comentario"
-                <?php echo !isset($_SESSION['usuario_id']) ? 'disabled' : ''; ?>>
-                Enviar
-            </button>
-        </form>
-    </section>
+    <h2>Comentarios</h2>
+    <form method="POST" action="">
+        <input type="text" name="mensagem" placeholder="Digite seu Comentario" required>
+        <?php if (!isset($_SESSION['usuario_id'])): ?>
+            <p style="color: red; margin: 10px 0;">⚠️ É obrigatório estar logado para comentar.</p>
+        <?php endif; ?>
+        <button type="submit" name="enviar_comentario"
+            <?php echo !isset($_SESSION['usuario_id']) ? 'disabled' : ''; ?>>
+            Enviar
+        </button>
+    </form>
     <div class="comentarios-lista">
         <?php
         $resultado = $mysqli->query("SELECT nome, mensagem, data_comentario FROM comentarios ORDER BY data_comentario DESC");
-
         while ($comentario = $resultado->fetch_assoc()) {
             echo "<div class='comentario'>";
             echo "<strong>" . htmlspecialchars($comentario['nome']) . "</strong><br>";
@@ -124,7 +165,7 @@ if (isset($_POST['enviar_comentario']) && isset($_SESSION['usuario_id'])) {
         }
         ?>
     </div>
-
+</section>
     <footer>
         <div class="redes-sociais">
             <a href="#"><i class="fab fa-instagram"></i></a>

@@ -13,7 +13,7 @@ body {
     margin: 0;
     padding: 0;
     color: var(--preto);
-    background-color: var(--bege-claro);
+    background-color: black !important;
     line-height: 1.6;
 }
 
@@ -151,10 +151,14 @@ nav ul li a:hover {
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
 }
 
+#menu {
+    background-color: black;
+}
 
 .menu {
     padding: 5rem 2rem;
-    background-color: var(--branco);
+    background-color: black;
+   
 }
 
 .menu h2 {
@@ -183,7 +187,7 @@ nav ul li a:hover {
 }
 
 .menu-item {
-    background-color: var(--bege-claro);
+  
     border-radius: 12px;
     overflow: hidden;
     box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
@@ -219,7 +223,7 @@ nav ul li a:hover {
 
 .sobre {
     padding: 5rem 2rem;
-    background-color: var(--bege-claro);
+    
     text-align: center;
 }
 
@@ -239,7 +243,8 @@ nav ul li a:hover {
 
 .contato {
     padding: 5rem 2rem;
-    background-color: var(--branco);
+    background-color: black
+   
 }
 
 .contato h2 {
@@ -291,7 +296,7 @@ nav ul li a:hover {
 
 
 footer {
-    background-color: var(--marrom-forno);
+   
     color: var(--branco);
     text-align: center;
     padding: 3rem 2rem;
@@ -353,4 +358,20 @@ footer p {
 
 .banner .btn {
     background-color: #F1C40F;
+}
+
+.comentarios-lista {
+    padding: 2rem 2rem;
+    max-width: 600px;
+    margin: 0 auto 2rem auto;
+    box-sizing: border-box;
+    width: 100%;
+}
+
+.comentario {
+    background: #fff;
+    border-radius: 8px;
+    padding: 1rem 1.5rem;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
 }
