@@ -70,7 +70,10 @@ require_once("../includes/conectarBD.php");
                     <div class="card-body">
                         <h5 class="card-title"><?php echo $arraySabores['nomeSabor'] ?></h5>
                         <p class="card-text"><?php echo $arraySabores['descSabor'] ?></p>
-                        <a href="#" class="btn btn-primary"><?php echo "R$" . $arraySabores['precoSabor'] ?></a>
+                        <form method="POST" action="pedido.php">
+                            <input type="hidden" name="idSabor" value="<?php echo $idSabor ?>">
+                            <button type="subimit" class="btn btn-warning"><?php echo "R$" . $arraySabores['precoSabor'] ?></button>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -93,7 +96,10 @@ require_once("../includes/conectarBD.php");
                     <div class="card-body">
                         <h5 class="card-title"><?php echo $arraySabores['nomeSabor'] ?></h5>
                         <p class="card-text"><?php echo $arraySabores['descSabor'] ?></p>
-                        <a href="#" class="btn btn-primary"><?php echo "R$" . $arraySabores['precoSabor'] ?></a>
+                        <form method="POST" action="pedido.php">
+                            <input type="hidden" name="idSabor" value="<?php echo $idSabor ?>">
+                            <button type="subimit" class="btn btn-warning"><?php echo "R$" . $arraySabores['precoSabor'] ?></button>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -111,7 +117,10 @@ require_once("../includes/conectarBD.php");
                 <div class="card-body">
                     <h5 class="card-title"><?php echo $arraySabores['nomeSabor'] ?></h5>
                     <p class="card-text"><?php echo $arraySabores['descSabor'] ?></p>
-                    <a href="#" class="btn btn-primary"><?php echo "R$" . $arraySabores['precoSabor'] ?></a>
+                    <form method="POST" action="pedido.php">
+                        <input type="hidden" name="idSabor" value="<?php echo $idSabor ?>">
+                        <button type="subimit" class="btn btn-warning"><?php echo "R$" . $arraySabores['precoSabor'] ?></button>
+                    </form>
                 </div>
             </div>
         </div>
