@@ -12,7 +12,7 @@ require_once("../includes/conectarBD.php");
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
     <link rel="stylesheet" href="../style/estilo.css">
-    <title>Pedido</title>
+    <title>Document</title>
 </head>
 
 <body>
@@ -22,22 +22,8 @@ require_once("../includes/conectarBD.php");
             <h1>Forno de Pizza</h1>
         </div>
         <nav>
-            <ul class="menu-cadastro" style="display: flex; gap: 10px; align-items: center;">
-                <li>
-                    <a><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-cart" viewBox="0 0 16 16">
-                        <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5M3.102 4l1.313 7h8.17l1.313-7zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4m7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4m-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2m7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2"/>
-                    </svg>0</a>
-                </li>
-                <?php if (isset($_SESSION['usuario_nome'])): ?>
-                    <li style="list-style: none; color: white;">
-                        <?php echo htmlspecialchars($_SESSION['usuario_nome']); ?>
-                    </li>
-                    <li style="list-style: none;">
-                        <a href="logout.php" style="color: white; text-decoration: none; background-color: #a00; padding: 5px 10px; border-radius: 5px;">Sair</a>
-                    </li>
-                <?php else: ?>
-                    <li><a href="../php/cadastrar.php">Cadastro</a></li>
-                <?php endif; ?>
+            <ul class="menu-cadastro">
+                <li><a href="#cadastro">Cadastro</a></li>
             </ul>
             <ul class="menu-centro">
                 <li><a href="#home">Home</a></li>
@@ -65,18 +51,18 @@ require_once("../includes/conectarBD.php");
 
     <?php
 
-    $contador = 3;
+    $contador = 4;
     $vezes = 0;
 
     while ($arraySabores = mysqli_fetch_array($sqlSabores)) {
 
         $idSabor = $arraySabores['idSabor'];
 
-        if($contador == 3 && $vezes == 0){
+        if($contador == 4 && $vezes == 0){
     ?>
     
     <div style="margin-top: 50px"></div>
-    <div class="container text-center d-flex justify-content-start">
+    <div class="container text-center d-flex justify-content-center">
         <div class="row row-cols-auto">
             <div class="col align-items-center">
                 <div class="card" style="width: 18rem;">
@@ -97,12 +83,12 @@ require_once("../includes/conectarBD.php");
         $contador = 1;
         $vezes++;
         
-    } elseif ($contador == 3 && $vezes > 0){
+    } elseif ($contador == 4 && $vezes > 0){
     ?>
         </div>
     </div>
     <div style="margin-top: 50px"></div>
-    <div class="container text-center d-flex justify-content-start">
+    <div class="container text-center d-flex justify-content-center">
         <div class="row row-cols-auto">
             <div class="col align-items-center">
                 <div class="card" style="width: 18rem;">

@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,700&display=swap');
 :root {
     --vermelho-pizza: #E63946;
     --amarelo-queijo: #F1C40F;
@@ -13,7 +14,7 @@ body {
     margin: 0;
     padding: 0;
     color: var(--preto);
-    background-color: var(--bege-claro);
+    background-color: black;
     line-height: 1.6;
 }
 
@@ -100,6 +101,9 @@ nav ul li a:hover {
     background-color: rgba(255, 255, 255, 0.1);
 }
 
+.navbar-nav{
+    color: white;
+}
 
 .banner {
     background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
@@ -154,7 +158,7 @@ nav ul li a:hover {
 
 .menu {
     padding: 5rem 2rem;
-    background-color: var(--branco);
+    background-color: rgb(27, 26, 26);
 }
 
 .menu h2 {
@@ -239,7 +243,7 @@ nav ul li a:hover {
 
 .contato {
     padding: 5rem 2rem;
-    background-color: var(--branco);
+    background-color: rgb(27, 26, 26);
 }
 
 .contato h2 {

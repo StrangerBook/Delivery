@@ -35,26 +35,52 @@ if (isset($_POST['enviar_comentario']) && isset($_SESSION['usuario_id'])) {
         <div class="logo">
             <h1>Forno de Pizza</h1>
         </div>
-        <nav>
-            <ul class="menu-cadastro" style="display: flex; gap: 10px; align-items: center;">
-                <?php if (isset($_SESSION['usuario_nome'])): ?>
-                    <li style="list-style: none; color: white;">
-                        <?php echo htmlspecialchars($_SESSION['usuario_nome']); ?>
-                    </li>
-                    <li style="list-style: none;">
-                        <a href="logout.php" style="color: white; text-decoration: none; background-color: #a00; padding: 5px 10px; border-radius: 5px;">Sair</a>
-                    </li>
-                <?php else: ?>
-                    <li><a href="../php/cadastrar.php">Cadastro</a></li>
-                <?php endif; ?>
-            </ul>
-            <ul class="menu-centro">
-                <li><a href="#home">Home</a></li>
-                <li><a href="../php/pedido.php">Menu</a></li>
-                <li><a href="#sobre">Sobre</a></li>
-                <li><a href="#contato">Contato</a></li>
-            </ul>
+        <nav class="navbar navbar-expand-lg" style="background-color: #6E2C00;">
+            <div class="container-fluid">
+
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
+                    <ul class="navbar-nav mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link text-white" aria-current="page" href="#">Início</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="#">Pedido</a>
+                        </li>
+
+                        <!-- Dropdown com cadastro/login -->
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                                Conta
+                            </a>
+                            <ul class="dropdown-menu text-center">
+                                <?php if (isset($_SESSION['usuario_nome'])): ?>
+                                    <li class="dropdown-item-text">
+                                        Olá, <strong><?php echo htmlspecialchars($_SESSION['usuario_nome']); ?></strong>
+                                    </li>
+                                    <li><a class="dropdown-item text-danger" href="logout.php">Sair</a></li>
+                                <?php else: ?>
+                                    <li><a class="dropdown-item" href="../php/cadastrar.php">Cadastro</a></li>
+                                    <li><a class="dropdown-item" href="../php/login.php">Login</a></li>
+                                <?php endif; ?>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
         </nav>
+
+
+
     </header>
     <section id="home" class="banner">
         <div class="banner-text">
@@ -133,5 +159,6 @@ if (isset($_POST['enviar_comentario']) && isset($_SESSION['usuario_id'])) {
         <p>&copy; 2025 Forno da Pizza. Todos os direitos reservados.</p>
     </footer>
 </body>
+<script src="../JavaScript/bootstrap.bundle.min.js"></script>
 
 </html>
