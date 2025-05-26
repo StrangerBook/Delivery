@@ -12,7 +12,8 @@ require_once("../includes/conectarBD.php");
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
     <link rel="stylesheet" href="../style/estilo.css">
-    <title>Document</title>
+    
+    <title>Pedido</title>
 </head>
 
 <body>
@@ -22,8 +23,17 @@ require_once("../includes/conectarBD.php");
             <h1>Forno de Pizza</h1>
         </div>
         <nav>
-            <ul class="menu-cadastro">
-                <li><a href="#cadastro">Cadastro</a></li>
+            <ul class="menu-cadastro" style="display: flex; gap: 10px; align-items: center;">
+                <?php if (isset($_SESSION['usuario_nome'])): ?>
+                    <li style="list-style: none; color: white;">
+                        <?php echo htmlspecialchars($_SESSION['usuario_nome']); ?>
+                    </li>
+                    <li style="list-style: none;">
+                        <a href="logout.php" style="color: white; text-decoration: none; background-color: #a00; padding: 5px 10px; border-radius: 5px;">Sair</a>
+                    </li>
+                <?php else: ?>
+                    <li><a href="../php/cadastrar.php">Cadastro</a></li>
+                <?php endif; ?>
             </ul>
             <ul class="menu-centro">
                 <li><a href="#home">Home</a></li>
@@ -51,18 +61,18 @@ require_once("../includes/conectarBD.php");
 
     <?php
 
-    $contador = 4;
+    $contador = 3;
     $vezes = 0;
 
     while ($arraySabores = mysqli_fetch_array($sqlSabores)) {
 
         $idSabor = $arraySabores['idSabor'];
 
-        if($contador == 4 && $vezes == 0){
+        if($contador == 3 && $vezes == 0){
     ?>
     
     <div style="margin-top: 50px"></div>
-    <div class="container text-center d-flex justify-content-center">
+    <div class="container text-center d-flex justify-content-start">
         <div class="row row-cols-auto">
             <div class="col align-items-center">
                 <div class="card" style="width: 18rem;">
@@ -83,12 +93,12 @@ require_once("../includes/conectarBD.php");
         $contador = 1;
         $vezes++;
         
-    } elseif ($contador == 4 && $vezes > 0){
+    } elseif ($contador == 3 && $vezes > 0){
     ?>
         </div>
     </div>
     <div style="margin-top: 50px"></div>
-    <div class="container text-center d-flex justify-content-center">
+    <div class="container text-center d-flex justify-content-start">
         <div class="row row-cols-auto">
             <div class="col align-items-center">
                 <div class="card" style="width: 18rem;">
