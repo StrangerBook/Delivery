@@ -50,7 +50,7 @@ if (isset($_POST['enviar_comentario']) && isset($_SESSION['usuario_id'])) {
                             <a class="nav-link text-white" aria-current="page" href="#">Início</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-white" href="#">Pedido</a>
+                            <a class="nav-link text-white" href="pedido.php">Pedido</a>
                         </li>
 
                         <!-- Dropdown com cadastro/login -->

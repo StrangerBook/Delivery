@@ -38,6 +38,30 @@ require_once("../includes/conectarBD.php");
 
     <?php
     $sqlSabores = mysqli_query($conexao, "SELECT idSabor, nomeSabor, descSabor, precoSabor FROM saborpizpainel ORDER BY idSabor") or die("Não foi possível realizar a consulta.");
+    
+    if(isset($POST['add'])){
+
+        $idSaborAdd = $POST['idSaborAdd'];
+        $totalPedido = 0;
+
+        
+        
+        
+        $sqlQtd = mysqli_query($conexao, "INSERT INTO quantidadepiz (id_sabor) VALUES ('$idSaborAdd')") or die("Erro no
+    comando SQL!!!<br/>" . mysqli_error($conexao));
+    echo "";
+
+        
+
+        $sqlSabores2 = mysqli_query($conexao, "SELECT idSabor, nomeSabor, descSabor, precoSabor FROM saborpizpainel ORDER BY idSabor") or die("Não foi possível realizar a consulta.");
+    
+
+        $sqlPedido = mysqli_query($conexao, "INSERT INTO pedido (totalPedido, idQuant) VALUES ('$totalPedido', '$idQuant')") or die("Erro no
+    comando SQL!!!<br/>" . mysqli_error($conexao));
+    echo "";
+
+    }
+    
     ?>
 
     <div class="container text-center">
@@ -66,12 +90,12 @@ require_once("../includes/conectarBD.php");
         <div class="row row-cols-auto">
             <div class="col align-items-center">
                 <div class="card" style="width: 18rem;">
-                    <img src="..." class="card-img-top" alt="...">
                     <div class="card-body">
                         <h5 class="card-title"><?php echo $arraySabores['nomeSabor'] ?></h5>
                         <p class="card-text"><?php echo $arraySabores['descSabor'] ?></p>
                         <form method="POST" action="pedido.php">
-                            <input type="hidden" name="idSabor" value="<?php echo $idSabor ?>">
+                            <input type="hidden" name="idSaborAdd" value="<?php echo $idSabor ?>">
+                            <input type="hidden" name="add" value="S">
                             <button type="subimit" class="btn btn-warning"><?php echo "R$" . $arraySabores['precoSabor'] ?></button>
                         </form>
                     </div>
@@ -92,12 +116,12 @@ require_once("../includes/conectarBD.php");
         <div class="row row-cols-auto">
             <div class="col align-items-center">
                 <div class="card" style="width: 18rem;">
-                    <img src="..." class="card-img-top" alt="...">
                     <div class="card-body">
                         <h5 class="card-title"><?php echo $arraySabores['nomeSabor'] ?></h5>
                         <p class="card-text"><?php echo $arraySabores['descSabor'] ?></p>
                         <form method="POST" action="pedido.php">
-                            <input type="hidden" name="idSabor" value="<?php echo $idSabor ?>">
+                            <input type="hidden" name="idSaborAdd" value="S">
+                            <input type="hidden" name="add" value="<?php echo $idSabor ?>">
                             <button type="subimit" class="btn btn-warning"><?php echo "R$" . $arraySabores['precoSabor'] ?></button>
                         </form>
                     </div>
@@ -113,12 +137,12 @@ require_once("../includes/conectarBD.php");
     ?>
         <div class="col align-items-center">
             <div class="card" style="width: 18rem;">
-                <img src="..." class="card-img-top" alt="...">
                 <div class="card-body">
                     <h5 class="card-title"><?php echo $arraySabores['nomeSabor'] ?></h5>
                     <p class="card-text"><?php echo $arraySabores['descSabor'] ?></p>
                     <form method="POST" action="pedido.php">
-                        <input type="hidden" name="idSabor" value="<?php echo $idSabor ?>">
+                        <input type="hidden" name="idSaborAdd" value="<?php echo $idSabor ?>">
+                        <input type="hidden" name="add" value="S">
                         <button type="subimit" class="btn btn-warning"><?php echo "R$" . $arraySabores['precoSabor'] ?></button>
                     </form>
                 </div>
@@ -134,58 +158,6 @@ require_once("../includes/conectarBD.php");
 ?>
         </div>
     </div>
-
-
-    <div class="barra-lateral">
-        <div class="container text-center d-flex justify-content-center" style="font-size: 20px;">
-            <p><b>Meu Carrinho</b></p>
-        </div>
-
-        <!-- Itens do carrinho aqui -->
-        <div class="items-carrinho">
-            <div class="container text-center d-flex justify-content-center" id="item-carrinho">
-                <div class="row row-cols">
-                    <div class="col align-items-center">
-                        <img src="../imagens/pizza1.jpeg" class="img-thumbnail">
-                    </div>
-                </div>
-            </div>
-
-            <div class="container text-center d-flex justify-content-center" id="item-carrinho">
-                <div class="row row-cols">
-                    <div class="col align-items-center">
-                        item
-                    </div>
-                    <div class="col align-items-center">
-                        preço
-                    </div>
-                </div>
-            </div>
-            <div class="container text-center d-flex justify-content-center" id="item-carrinho">
-                <div class="row row-cols">
-                    <div class="col align-items-center">
-                        <form action="" method="POST">
-                            <input type="hidden" name="" value="">
-                            <button type="submit">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
-                                <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z"/>
-                                <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z"/>
-                                </svg>
-                            </button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Mensagem de carrinho vazio aqui -->
-        <div class="container text-center d-flex justify-content-center" style="font-size: 15px;">
-            <p>Carrinho vazio</p>
-
-        </div>
-    </div>
-
-
 
 <div style="margin-top: 50px"></div>
 
