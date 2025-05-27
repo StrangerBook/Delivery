@@ -24,8 +24,7 @@ if (isset($_POST['enviar_comentario']) && isset($_SESSION['usuario_id'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet"
-      integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
     <link rel="stylesheet" href="../style/estilo.css">
     <title>Forno da Pizza</title>
 </head>
@@ -126,7 +125,7 @@ if (isset($_POST['enviar_comentario']) && isset($_SESSION['usuario_id'])) {
     <form method="POST" action="">
         <input type="text" name="mensagem" placeholder="Digite seu Comentario" required>
         <?php if (!isset($_SESSION['usuario_id'])): ?>
-            <p style="color: red; margin: 10px 0;">⚠️ É obrigatório estar logado para comentar.</p>
+            <p style="color: red; margin: 10px 0;">⚠ É obrigatório estar logado para comentar.</p>
         <?php endif; ?>
         <button type="submit" name="enviar_comentario"
             <?php echo !isset($_SESSION['usuario_id']) ? 'disabled' : ''; ?>>

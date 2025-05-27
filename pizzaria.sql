@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 27/05/2025 às 22:42
+-- Tempo de geração: 28/05/2025 às 01:46
 -- Versão do servidor: 10.4.32-MariaDB
 -- Versão do PHP: 8.2.12
 
@@ -20,6 +20,20 @@ SET time_zone = "+00:00";
 --
 -- Banco de dados: `pizzaria`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `comentarios`
+--
+
+CREATE TABLE `comentarios` (
+  `id` int(11) NOT NULL,
+  `usuario_id` int(11) NOT NULL,
+  `nome` varchar(100) NOT NULL,
+  `mensagem` text NOT NULL,
+  `data_comentario` datetime DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -91,6 +105,13 @@ CREATE TABLE `usuarios` (
 --
 
 --
+-- Índices de tabela `comentarios`
+--
+ALTER TABLE `comentarios`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `usuario_id` (`usuario_id`);
+
+--
 -- Índices de tabela `pedido`
 --
 ALTER TABLE `pedido`
@@ -118,6 +139,12 @@ ALTER TABLE `usuarios`
 --
 -- AUTO_INCREMENT para tabelas despejadas
 --
+
+--
+-- AUTO_INCREMENT de tabela `comentarios`
+--
+ALTER TABLE `comentarios`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de tabela `pedido`
