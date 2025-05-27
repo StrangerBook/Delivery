@@ -192,7 +192,11 @@ require_once("../includes/conectarBD.php");
     </div>
 
 <div style="margin-top: 50px"></div>
-
+<div class="container text-center d-flex justify-content-center">
+    <form action="../checkout.html">
+      <button type="subimit" class="btn btn-warning">Continuar</button>
+      </form>
+</div>
 </body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js" integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO" crossorigin="anonymous"></script>
 
