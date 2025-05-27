@@ -155,6 +155,9 @@ nav ul li a:hover {
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
 }
 
+#menu {
+    background-color: black;
+}
 
 .menu {
     padding: 5rem 2rem;
@@ -187,7 +190,7 @@ nav ul li a:hover {
 }
 
 .menu-item {
-    background-color: var(--bege-claro);
+  
     border-radius: 12px;
     overflow: hidden;
     box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
@@ -223,7 +226,7 @@ nav ul li a:hover {
 
 .sobre {
     padding: 5rem 2rem;
-    background-color: var(--bege-claro);
+    
     text-align: center;
 }
 
@@ -295,7 +298,7 @@ nav ul li a:hover {
 
 
 footer {
-    background-color: var(--marrom-forno);
+   
     color: var(--branco);
     text-align: center;
     padding: 3rem 2rem;

@@ -1,0 +1,40 @@
+.form-section {
+  max-width: 300px;
+  margin: auto;
+  padding: 20px;
+  border: 2px solid red;
+  border-radius: 10px;
+   background: white;
+}
+
+.shipping-method {
+  border: 1px solid #ccc;
+  padding: 10px;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.shipping-method img {
+  height: 20px;
+  margin-right: 10px;
+}
+
+body {
+  background: orange;
+  font-family: 'Poppins', sans-serif;
+  padding: 40px 10px;
+}
+
+.titulo-envio {
+  background: #e63946;
+  color: #fff;
+  padding: 10px 16px;
+  border-radius: 8px;
+  display: inline-block;
+  margin-bottom: 18px;
+  font-weight: bold;
+  font-size: 1.1rem;
+}
