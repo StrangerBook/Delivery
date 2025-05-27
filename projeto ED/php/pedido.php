@@ -16,21 +16,53 @@ require_once("../includes/conectarBD.php");
 </head>
 
 <body>
-
     <header>
-        <div class="logo">
+
+    <div class="logo">
             <h1>Forno de Pizza</h1>
         </div>
-        <nav>
-            <ul class="menu-cadastro">
-                <li><a href="#cadastro">Cadastro</a></li>
-            </ul>
-            <ul class="menu-centro">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#menu">Menu</a></li>
-                <li><a href="#sobre">Sobre</a></li>
-                <li><a href="#contato">Contato</a></li>
-            </ul>
+        <nav class="navbar navbar-expand-lg" style="background-color: #6E2C00;">
+            <div class="container-fluid">
+
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
+                    <ul class="navbar-nav mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link text-white" aria-current="page" href="index.php">Início</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="pedido.php">Pedido</a>
+                        </li>
+
+                        <!-- Dropdown com cadastro/login -->
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                                Conta
+                            </a>
+                            <ul class="dropdown-menu text-center">
+                                <?php if (isset($_SESSION['usuario_nome'])): ?>
+                                    <li class="dropdown-item-text">
+                                        Olá, <strong><?php echo htmlspecialchars($_SESSION['usuario_nome']); ?></strong>
+                                    </li>
+                                    <li><a class="dropdown-item text-danger" href="logout.php">Sair</a></li>
+                                <?php else: ?>
+                                    <li><a class="dropdown-item" href="../php/cadastrar.php">Cadastro</a></li>
+                                    <li><a class="dropdown-item" href="../php/login.php">Login</a></li>
+                                <?php endif; ?>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
         </nav>
     </header>
 
