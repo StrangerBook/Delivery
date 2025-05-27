@@ -70,6 +70,30 @@ require_once("../includes/conectarBD.php");
 
     <?php
     $sqlSabores = mysqli_query($conexao, "SELECT idSabor, nomeSabor, descSabor, precoSabor FROM saborpizpainel ORDER BY idSabor") or die("Não foi possível realizar a consulta.");
+    
+    if(isset($POST['add'])){
+
+        $idSaborAdd = $POST['idSaborAdd'];
+        $totalPedido = 0;
+
+        
+        
+        
+        $sqlQtd = mysqli_query($conexao, "INSERT INTO quantidadepiz (id_sabor) VALUES ('$idSaborAdd')") or die("Erro no
+    comando SQL!!!<br/>" . mysqli_error($conexao));
+    echo "";
+
+        
+
+        $sqlSabores2 = mysqli_query($conexao, "SELECT idSabor, nomeSabor, descSabor, precoSabor FROM saborpizpainel ORDER BY idSabor") or die("Não foi possível realizar a consulta.");
+    
+
+        $sqlPedido = mysqli_query($conexao, "INSERT INTO pedido (totalPedido, idQuant) VALUES ('$totalPedido', '$idQuant')") or die("Erro no
+    comando SQL!!!<br/>" . mysqli_error($conexao));
+    echo "";
+
+    }
+    
     ?>
 
     <div class="container text-center">
@@ -168,12 +192,6 @@ require_once("../includes/conectarBD.php");
     </div>
 
 <div style="margin-top: 50px"></div>
-
-<div class="container text-center d-flex justify-content-center">
-    <form action="../checkout.html">
-      <button type="subimit" class="btn btn-warning">Continuar</button>
-      </form>
-</div>
 
 </body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js" integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO" crossorigin="anonymous"></script>
