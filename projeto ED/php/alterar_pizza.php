@@ -1,4 +1,5 @@
 <?php
+// Conexão com o banco de dados
 require_once("../includes/conectarBD.php");
 ?>
 
@@ -7,11 +8,13 @@ require_once("../includes/conectarBD.php");
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
     <title>Painel de Pizza</title>
 </head>
 <body>
 
+    <!-- Navbar -->
     <nav class="navbar navbar-warning bg-warning fixed-top">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">Forno de Pizza</a>
@@ -38,14 +41,19 @@ require_once("../includes/conectarBD.php");
         </div>
     </nav>
 
+    <!-- Espaço para navbar fixa -->
 <div style="margin-top: 100px"></div>
 
 <?php
+// Verifica se o formulário não foi enviado
 if (!isset($_POST["enviar"])) {
 
+    // Recebe o id do sabor
     $idSabor = $_POST["idSabor"];
+    // Consulta os dados do sabor
     $consulta = mysqli_query($conexao, "SELECT idSabor, nomeSabor, descSabor, precoSabor FROM saborpizpainel WHERE idSabor='$idSabor'");
 
+    // Conta quantas linhas retornou
     $linha = mysqli_num_rows($consulta);
     if ($linha == 0)
     {
@@ -54,14 +62,14 @@ if (!isset($_POST["enviar"])) {
         echo "<b><a href='painel.php'><b>Voltar para a Painel </a><br/>";
     }
 
-
-        $campoSabor = mysqli_fetch_row($consulta);
-        $nomeSabor = $campoSabor[1];
-        $descSabor = $campoSabor[2];
-        $precoSabor = $campoSabor[3];
-
+    // Pega os dados da consulta
+    $campoSabor = mysqli_fetch_row($consulta);
+    $nomeSabor = $campoSabor[1];
+    $descSabor = $campoSabor[2];
+    $precoSabor = $campoSabor[3];
     ?>
 
+<!-- Formulário de edição -->
 <div class="container text-center">
     <div class="row">
         <div class="col">
@@ -92,20 +100,22 @@ if (!isset($_POST["enviar"])) {
     </form>
 </div>
 
-
-    <?php
-        mysqli_close($conexao);
+<?php
+    // Fecha conexão
+    mysqli_close($conexao);
 } else {
-
+    // Recebe dados do formulário enviado
     $idSabor = $_POST["idSabor"];
     $nomeSabor = $_POST["nomeSabor"];
     $descSabor = $_POST["descSabor"];
     $precoSabor = $_POST["precoSabor"];
-    $alterarSabor = mysqli_query($conexao, "UPDATE saborpizpainel SET nomeSabor='$nomeSabor', descSabor='$descSabor', precoSabor = '$precoSabor' WHERE idSabor='$idSabor'");
 
+    // Atualiza dados no banco
+    $alterarSabor = mysqli_query($conexao, "UPDATE saborpizpainel SET nomeSabor='$nomeSabor', descSabor='$descSabor', precoSabor = '$precoSabor' WHERE idSabor='$idSabor'");
     ?>
 
-    <div class="container text-center border border-warning">
+<!-- Exibe dados atualizados -->
+<div class="container text-center border border-warning">
     <div class="row">
         <div class="col">
             <p style="font-size: 25px;">Nome</p>
@@ -148,6 +158,7 @@ if (!isset($_POST["enviar"])) {
 ?>
 
 </body>
+<!-- Scripts JS -->
 <script src="../JavaScript/add_pizza.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js" integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO" crossorigin="anonymous"></script>
 
